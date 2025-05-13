@@ -1,0 +1,5 @@
+"id","question_text","type","created_at","form"
+"c80228cc-1e08-43e7-8c37-ebc099604f34","Which of the following types of learning style do you prefer most while learning? You can only choose one option.","single","2025-02-03 03:07:18","preferred_learn_style"
+"e09c6d62-ddb9-4502-9b15-1716d96b37dd","Which of the following types of content do you typically learn more effectively, especially learning a new topic? You can only select up to 3 areas that interest you the most.","multiple","2025-02-03 03:05:47","preferred_content_types"
+"7f44af94-fa91-40a9-9e83-49cd6669a888","What is your highest level of education? You can only choose one option.","single","2025-02-03 03:08:08","education_lv"
+"876982bd-24dd-4334-af16-eb07149222c9","Take a look at the popular fields of study below, are you interested in any of them? You can only select up to 3 areas that interest you the most.","multiple","2025-02-03 03:03:46","preferred_areas"

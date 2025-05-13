@@ -1,6 +1,6 @@
 # # Guide to Deploying the Educational Temporal Knowledge Graph (ETKG) Application with Docker
 
-## Giới thiệu
+## Introduction
 
 This document guides how to deploy the Educational Temporal Knowledge Graph (ETKG) application using Docker and Docker Compose. Using Docker simplifies the installation and deployment process, ensuring the application runs consistently across all environments.
 
@@ -10,7 +10,7 @@ This document guides how to deploy the Educational Temporal Knowledge Graph (ETK
 - Docker Compose (version 1.27 or higher)
 - At least 2GB of RAM and 10GB of free disk space
 
-## Cấu trúc thư mục
+## Folder structure
 
 ```
 tkg-docker/
@@ -39,14 +39,14 @@ tkg-docker/
 
 Ensure Docker and Docker Compose are installed on your system:
 
-\`\`\`bash
+```bash
 docker --version
 docker-compose --version
-\`\`\`
+```
 
 ### 2. Prepare the Data
 
-Ensure the JSON data files are placed in the \`upload/\` directory:
+Ensure the JSON data files are placed in the upload/ directory:
 
 - users_data.json
 - question_data.json
@@ -56,11 +56,12 @@ Ensure the JSON data files are placed in the \`upload/\` directory:
 
 ### 3. Automated Deployment
 
-The easiest way to deploy is to use the \`run_docker.sh\` script:
+The easiest way to deploy is to use the run_docker.sh script:
 
-\`\`\`bash
+```
+bash
 ./run_docker.sh
-\`\`\`
+```
 
 This script will:
 - Check the Docker and Docker Compose installations
@@ -74,7 +75,7 @@ This script will:
 
 If you want to deploy manually, follow these steps:
 
-\`\`\`bash
+```bash
 # Build and start the containers
 docker-compose up --build -d
 
@@ -86,7 +87,7 @@ docker-compose logs -f app
 
 # View Neo4j logs
 docker-compose logs -f neo4j
-\`\`\`
+```
 
 ## Accessing the Neo4j Browser
 
@@ -102,7 +103,7 @@ Once deployment is successful, you can access the Neo4j Browser to view and quer
 
 Below are some useful Cypher queries to explore the Knowledge Graph:
 
-\`\`\`cypher
+```cypher
 // View all nodes
 MATCH (n) RETURN n LIMIT 100
 
@@ -118,33 +119,33 @@ MATCH (t:Topic) RETURN t
 
 // View relationships between nodes
 MATCH p=()-[r]->() RETURN p LIMIT 25
-\`\`\`
+```
 
 ## Container Management
 
 ### Stopping Containers
 
-\`\`\`bash
+```bash
 docker-compose stop
-\`\`\`
+```
 
 ### Starting Containers
 
-\`\`\`bash
+```bash
 docker-compose start
-\`\`\`
+```
 
 ### Stopping and Removing Containers
 
-\`\`\`bash
+```bash
 docker-compose down
-\`\`\`
+```
 
 ### Stopping, Removing Containers, and Deleting Volumes
 
-\`\`\`bash
+```bash
 docker-compose down -v
-\`\`\`
+```
 
 ## Troubleshooting
 
@@ -152,9 +153,9 @@ docker-compose down -v
 
 If Neo4j fails to start, check the logs:
 
-\`\`\`bash
+```bash
 docker-compose logs neo4j
-\`\`\`
+```
 
 You may need to increase Docker's memory allocation or adjust Neo4j's configuration in the docker-compose.yml file.
 
@@ -162,9 +163,9 @@ You may need to increase Docker's memory allocation or adjust Neo4j's configurat
 
 Check the application logs:
 
-\`\`\`bash
+```bash
 docker-compose logs app
-\`\`\`
+```
 
 Make sure Neo4j has fully started before the application attempts to connect. You may need to adjust the healthcheck timeout.
 

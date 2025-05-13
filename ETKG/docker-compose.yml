@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:4.4
+    container_name: neo4j
+    ports:
+      - "7474:7474"  # Neo4j Browser
+      - "7687:7687"  # Bolt protocol
+    environment:
+      - NEO4J_AUTH=neo4j/password123
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=1G
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "password123", "MATCH () RETURN count(*) as count"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tkg_builder
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    volumes:
+      - ./upload:/app/upload
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=password123
+      - USERS_DATA_PATH=/app/upload/users_data.json
+      - QUESTION_DATA_PATH=/app/upload/question_data.json
+      - OPTIONS_DATA_PATH=/app/upload/options_data.json
+      - HISTORY_LEARNING_DATA_PATH=/app/upload/history_learning_data.json
+      - FINAL_SAMPLE_OUTPUT_PATH=/app/upload/final_sample_output.json
+      - LOG_LEVEL=INFO
+      - LOG_FILE=/app/tkg_builder.log
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:

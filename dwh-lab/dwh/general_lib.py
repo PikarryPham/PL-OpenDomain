@@ -34,11 +34,11 @@ logger.addHandler(handler)
 logger.propagate = True
 
 ACCOUNT_NAME = "13f45cadls"
-AZURE_DATALAKE_STORAGE_KEY =  "+oB+LkoL2KPaMvZbChL9vKVr/3lFJyDjmHI2cpyFJFDlMFW2pEzPN1zAQbmx9ovFE0hX1vvfll66+ASthCJINQ=="
+AZURE_DATALAKE_STORAGE_KEY =  ""
 GMAIL_APP_PASSWORD= "fyji hord sosm lpic"
 CLICK_HOUSE_HOST = "h8tw70myst.ap-northeast-1.aws.clickhouse.cloud"
 CLICK_HOUSE_USER = "default"
-CLICK_HOUSE_PASSWORD = "YAWU5r~485Xr~"
+CLICK_HOUSE_PASSWORD = ""
 
 
 def convert_uuid(val):

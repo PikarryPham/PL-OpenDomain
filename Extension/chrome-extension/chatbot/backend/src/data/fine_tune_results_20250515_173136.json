@@ -1,0 +1,118 @@
+{
+  "version": "20250515_173136",
+  "data_size": 50,
+  "models": {
+    "tfidf": {
+      "status": "success",
+      "metadata": {
+        "model_type": "tfidf",
+        "version": "20250515_173136",
+        "created_at": "2025-05-15T17:31:37.003483",
+        "data_size": 50,
+        "performance_metrics": {
+          "corpus_size": 50
+        }
+      }
+    },
+    "bm25": {
+      "status": "success",
+      "metadata": {
+        "model_type": "bm25",
+        "version": "20250515_173136",
+        "created_at": "2025-05-15T17:31:37.111758",
+        "data_size": 50,
+        "performance_metrics": {
+          "corpus_size": 50
+        }
+      }
+    },
+    "bmx": {
+      "status": "error",
+      "error": "BMX model is not available"
+    },
+    "roberta": {
+      "status": "success",
+      "metadata": {
+        "model_name": "roberta-base",
+        "trained_on": 50,
+        "version": "20250515_173136"
+      },
+      "metadata_loaded": {
+        "model_name": "roberta-base",
+        "model_type": "roberta",
+        "version": "hf_20250515_173208",
+        "created_at": "2025-05-15T17:32:17.116619",
+        "is_quantized": false,
+        "source": "HuggingFace (downloaded)",
+        "dimensions": 768
+      }
+    },
+    "xlm-roberta": {
+      "status": "success",
+      "metadata": {
+        "model_name": "xlm-roberta-base",
+        "trained_on": 50,
+        "version": "20250515_173136"
+      },
+      "metadata_loaded": {
+        "model_name": "xlm-roberta-base",
+        "model_type": "xlm-roberta",
+        "version": "hf_20250515_173318",
+        "created_at": "2025-05-15T17:33:30.654366",
+        "is_quantized": false,
+        "source": "HuggingFace (downloaded)",
+        "dimensions": 768
+      }
+    },
+    "distilbert": {
+      "status": "success",
+      "metadata": {
+        "model_name": "distilbert-base-uncased",
+        "trained_on": 50,
+        "version": "20250515_173136"
+      },
+      "metadata_loaded": {
+        "model_name": "distilbert-base-uncased",
+        "model_type": "distilbert",
+        "version": "hf_20250515_173354",
+        "created_at": "2025-05-15T17:33:57.408019",
+        "is_quantized": false,
+        "source": "HuggingFace (downloaded)",
+        "dimensions": 768
+      }
+    },
+    "hybrid_tfidf_bert": {
+      "status": "success",
+      "metadata": {
+        "base_models": [
+          "tfidf",
+          "bert-base-uncased"
+        ],
+        "trained_on": 50,
+        "version": "20250515_173136"
+      }
+    },
+    "hybrid_bm25_bert": {
+      "status": "success",
+      "metadata": {
+        "base_models": [
+          "bm25",
+          "bert-base-uncased"
+        ],
+        "trained_on": 50,
+        "version": "20250515_173136"
+      }
+    },
+    "hybrid_bmx_bert": {
+      "status": "success",
+      "metadata": {
+        "base_models": [
+          "bmx",
+          "bert-base-uncased"
+        ],
+        "trained_on": 50,
+        "version": "20250515_173136"
+      }
+    }
+  }
+}

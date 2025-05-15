@@ -1,0 +1,6 @@
+.env
+*/.env
+.idea
+backend/models
+*.png
+**/*.png

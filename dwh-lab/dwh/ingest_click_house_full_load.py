@@ -3,10 +3,10 @@ import argparse
 from datetime import datetime
 
 ACCOUNT_NAME = "13f45cadls"
-AZURE_DATALAKE_STORAGE_KEY =  "+oB+LkoL2KPaMvZbChL9vKVr/3lFJyDjmHI2cpyFJFDlMFW2pEzPN1zAQbmx9ovFE0hX1vvfll66+ASthCJINQ=="
+AZURE_DATALAKE_STORAGE_KEY =  ""
 CLICK_HOUSE_HOST = "h8tw70myst.ap-northeast-1.aws.clickhouse.cloud"
 CLICK_HOUSE_USER = "default"
-CLICK_HOUSE_PASSWORD = "YAWU5r~485Xr~"
+CLICK_HOUSE_PASSWORD = ""
 SOURCE_CONTAINER = "00fs"
 DESTINATION_CONTAINER = "01landzone"
 BASE_PATH = "streaming-sources"

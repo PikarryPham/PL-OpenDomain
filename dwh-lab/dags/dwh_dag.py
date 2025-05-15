@@ -170,6 +170,50 @@ default_args = {
     'email_on_retry': False,
 }
 
+def integrated_processing(entity_name):
+    import logging
+    log = logging.getLogger("airflow.task")
+
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'dwh', 'integrated_processing.py'))
+
+    args = ["--entity_name", entity_name]
+    process = subprocess.Popen(
+        [sys.executable, "-u", script_path] + args,  # -u forces unbuffered output
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1
+    )
+
+    for line in process.stdout:
+        log.info(line.strip())
+
+    process.wait()
+    if process.returncode != 0:
+        raise subprocess.CalledProcessError(process.returncode, process.args)
+    
+def KG_processing(entity_name):
+    import logging
+    log = logging.getLogger("airflow.task")
+
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'dwh', 'KG_processing.py'))
+
+    args = ["--entity_name", entity_name]
+    process = subprocess.Popen(
+        [sys.executable, "-u", script_path] + args,  # -u forces unbuffered output
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1
+    )
+
+    for line in process.stdout:
+        log.info(line.strip())
+
+    process.wait()
+    if process.returncode != 0:
+        raise subprocess.CalledProcessError(process.returncode, process.args)
+
 # Define the DAG
 with DAG(
     dag_id="dwh_dag",
@@ -182,7 +226,7 @@ with DAG(
     max_active_runs=5,
     tags=["dwh"]
 ) as dag:
-    with TaskGroup(group_id="00fs_01land") as ingestion_group:
+    with TaskGroup(group_id="00fs_00_1_land") as ingestion_group:
         with TaskGroup(group_id="batch_sources") as batch_sources:
             run_junyi_Exercise_table_trans = PythonOperator(
                 task_id="junyi_Exercise_table_trans",
@@ -196,7 +240,7 @@ with DAG(
                 op_args=["batch-sources/junyi/junyi_ProblemLog_original.csv"]
             )
 
-        with TaskGroup(group_id="click_house") as batch_sources:
+        with TaskGroup(group_id="stream_sources") as batch_sources:
             run_click_house_options = PythonOperator(
                 task_id="click_house_options",
                 python_callable=ingest_click_house_full_load,
@@ -219,7 +263,7 @@ with DAG(
                 python_callable=ingest_click_house_incremental_load,
                 op_args=["browsinghistory"]
             )
-    with TaskGroup(group_id="01land_02bronze") as preprocessing_group:
+    with TaskGroup(group_id="00_1_land_01bronze") as preprocessing_group:
         with TaskGroup(group_id="batch_sources_preprocessing") as batch_sources_preprocessing:
             run_preprocessing_batch_sources_stage1= PythonOperator(
                 task_id="preprocessing_browsing_history",
@@ -246,6 +290,20 @@ with DAG(
                 task_id="preprocessing_streaming_incremental_load",
                 python_callable=preprocessing_streaming_incremental_load,
                 op_args=[]
+            )
+    with TaskGroup(group_id="01bronze_02silver") as preprocessing_group:
+        with TaskGroup(group_id="integrated_processing") as batch_sources_preprocessing:
+            run_preprocessing_batch_sources_stage1= PythonOperator(
+                task_id="from_preprocess_to_integrated",
+                python_callable=integrated_processing,
+                op_args=None
+            )
+    with TaskGroup(group_id="02silver_03gold") as preprocessing_group:
+        with TaskGroup(group_id="KG_processing") as batch_sources_preprocessing:
+            run_preprocessing_batch_sources_stage1= PythonOperator(
+                task_id="from_integrated_to_KG",
+                python_callable=KG_processing,
+                op_args=None
             )
 
 [run_junyi_Exercise_table_trans, run_junyi_ProblemLog_original ] >> batch_sources_preprocessing

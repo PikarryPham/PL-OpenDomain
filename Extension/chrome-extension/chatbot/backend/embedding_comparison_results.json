@@ -1,0 +1,45 @@
+{
+  "models": {
+    "openai": {
+      "query_time": 9.059906005859375e-08,
+      "corpus_time": 1.3113021850585939e-07
+    },
+    "tfidf": {
+      "query_time": 0.0014894342422485352,
+      "corpus_time": 0.0014014760653177896
+    },
+    "bm25": {
+      "query_time": 0.001216106414794922,
+      "corpus_time": 0.0038373430569966635
+    },
+    "bmx": {
+      "query_time": 4.4698715209960935e-05,
+      "corpus_time": 3.1888484954833984e-05
+    },
+    "roberta": {
+      "query_time": 0.06848523139953613,
+      "corpus_time": 0.3616024851799011
+    },
+    "xlm-roberta": {
+      "query_time": 0.06990509510040283,
+      "corpus_time": 0.3513459086418152
+    },
+    "distilbert": {
+      "query_time": 0.035110492706298825,
+      "corpus_time": 0.19036219517389932
+    },
+    "hybrid_tfidf_bert": {
+      "query_time": 0.038165626525878904,
+      "corpus_time": 0.16610270738601685
+    },
+    "hybrid_bm25_bert": {
+      "query_time": 0.03385445594787598,
+      "corpus_time": 0.18030323187510172
+    },
+    "hybrid_bmx_bert": {
+      "query_time": 0.03591873645782471,
+      "corpus_time": 0.16865901947021483
+    }
+  },
+  "summary": {}
+}

@@ -22,7 +22,7 @@ airflow users create \
   --firstname admin \
   --lastname admin \
   --role Admin \
-  --email your@email.com
+  --email your@email.com (In my case, it is trang.pham@jaist.ac.jp)
 ```
 9. Start the Airflow webserver ```airflow webserver```. If the terminal logs as follows, that is correct 
 ![airflow webserver](./img/webserver.png)

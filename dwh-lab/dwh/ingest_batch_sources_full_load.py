@@ -21,19 +21,10 @@ import argparse
 import general_lib
 
 ACCOUNT_NAME = "13f45cadls"
-AZURE_DATALAKE_STORAGE_KEY =  "+oB+LkoL2KPaMvZbChL9vKVr/3lFJyDjmHI2cpyFJFDlMFW2pEzPN1zAQbmx9ovFE0hX1vvfll66+ASthCJINQ=="
+AZURE_DATALAKE_STORAGE_KEY =  ""
 CLICK_HOUSE_HOST = "h8tw70myst.ap-northeast-1.aws.clickhouse.cloud"
 CLICK_HOUSE_USER = "default"
-CLICK_HOUSE_PASSWORD = "YAWU5r~485Xr~"
-
-# Source from  
-# Get all directory from batch_sources
-# Get all entities from each directory --> Full Load
-# WRITE CSV, JSON, DELTA to daily path yyyyMMdd_entityname.format
-# WRITE TO 01-land-zone/batch_sources/directory
-# ARCHIVE 00_FS/batch_sources/archives/junyi
-# FAIL --> MOVE TO LOG
-# DATA QUALITY CHECK 
+CLICK_HOUSE_PASSWORD = ""
 
 SOURCE_CONTAINER = "00fs"
 DESTINATION_CONTAINER = "01landzone"

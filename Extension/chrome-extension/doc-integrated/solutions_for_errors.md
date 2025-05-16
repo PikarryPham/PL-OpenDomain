@@ -109,7 +109,7 @@ This error occurs because the API handler function returns a boolean value inste
     ```bash
     curl -X POST http://localhost:8000/models/fine-tune \
       -H "Content-Type: application/json" \
-      -d '{"path": "data/history_learning_data.json", "sample": 100, "version": "custom_v1"}'
+      -d '{"path": "data/history_learning_data.json", "sample": 10000, "version": "custom_v1"}'
     ```
 6.  Check model status:
     ```bash

@@ -290,7 +290,7 @@ Compare model performance:
 ```bash
 curl -X POST http://localhost:8000/models/compare \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 1000000}'
+  -d '{"path": "data/history_learning_data.json", "sample": 10000}'
 ```
 
 Run detailed evaluation script:
@@ -302,7 +302,7 @@ docker exec -it chatbot-api bash
 cd /usr/src/app/src
 
 # Run the evaluation script
-python evaluate_models.py --data_path data/history_learning_data.json --output_dir results --sample 20
+python evaluate_models.py --data_path data/history_learning_data.json --output_dir results --sample 10000 --limit 15
 ```
 
 ### 2.7. Common Troubleshooting
@@ -426,7 +426,7 @@ API endpoint to extract data from history learning data using a combination of 3
       curl --location 'http://localhost:8000/dbpedia/extract-data-auto' \
     --header 'Content-Type: application/json' \
     --data '{
-        "sample": 100000,
+        "sample": 10000,
         "limit": 15
     }'
 ```
@@ -439,7 +439,7 @@ API endpoint to extract data from history learning data using a combination of 3
       "result_endpoint": "/dbpedia/extract-data-auto/c06a24a2-96a5-4346-be74-8eba5ae7aca5",
       "params": {
           "file_path": "/usr/src/app/src/data/history_learning_data.json",
-          "sample": 100000,
+          "sample": 10000,
           "limit": 15,
           "embedding_model": "distilbert",
           "ensure_count": true

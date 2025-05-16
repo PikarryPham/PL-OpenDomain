@@ -67,7 +67,7 @@ echo "Hoàn thành tải tất cả các mô hình!"
 echo "Bây giờ bạn có thể tiến hành fine-tune các mô hình với lệnh:"
 echo "curl -X POST \"$API_URL/models/fine-tune\" \\"
 echo "  -H \"Content-Type: application/json\" \\"
-echo "  -d '{\"path\": \"data/history_learning_data.json\", \"sample\": 100, \"version\": \"custom_v1\"}'"
+echo "  -d '{\"path\": \"data/history_learning_data_sample.json\", \"sample\": 100, \"version\": \"custom_v1\"}'"
 
 # Đặt quyền thực thi cho script
 chmod +x "$0" 

@@ -1296,7 +1296,7 @@ def extract_data_auto_task(
     ensure_count=True,
 ):
     """
-    Task để tự động trích xuất data từ file history_learning_data.json,
+    Task để tự động trích xuất data từ file history_learning_data_sample.json,
     sử dụng kết hợp 3 phương pháp (LDA, DistilBERT, keyword extraction)
     để tự động trích xuất topic, lưu topics vào database,
     sau đó tìm kiếm categories và liên kết đến các pages trên DBpedia.
@@ -1615,12 +1615,12 @@ def extract_data_auto_task(
 @celery_app.task(bind=True)
 def batch_extract_topics_task(self, entries, compare_methods=True, ensure_count=False):
     """
-    Task xử lý danh sách entries từ file history_learning_data.json,
+    Task xử lý danh sách entries từ file history_learning_data_sample.json,
     sử dụng AI để summarize nội dung và xác định các topic liên quan,
     và so sánh với phương pháp truyền thống nếu yêu cầu.
 
     Args:
-        entries (List[Dict]): Danh sách các entry từ history_learning_data.json
+        entries (List[Dict]): Danh sách các entry từ history_learning_data_sample.json
         compare_methods (bool): Có so sánh phương pháp AI với phương pháp truyền thống không
         ensure_count (bool): Đảm bảo đủ số lượng kết quả được xử lý
 

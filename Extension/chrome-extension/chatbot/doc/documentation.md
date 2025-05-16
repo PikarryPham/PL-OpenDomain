@@ -10,9 +10,6 @@ There are 4 main documentation files:
 3. **quantization_api_docs.md** - Specific documentation for model quantization APIs
 4. **solutions_for_errors.md** - Troubleshooting common errors and recommended processes
 
-## Note about data request
-Because the data contain private information of learners so it is only available upon request. Please dm me via email for request data: trang.pham@jaist.ac.jp. 
-
 ## Recommended Reading Order
 
 For optimal understanding and successful setup, follow this reading order:
@@ -161,7 +158,7 @@ After basic setup, explore these advanced features:
    ```bash
    curl -X POST http://localhost:8000/models/compare \
      -H "Content-Type: application/json" \
-     -d '{"path": "data/history_learning_data.json", "sample": 10000}'
+     -d '{"path": "data/history_learning_data_sample.json", "sample": 10000}'
    ```
 
 ## Key APIs Reference

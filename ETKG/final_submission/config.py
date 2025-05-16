@@ -4,10 +4,10 @@ NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "password123"  # Đã thay đổi mật khẩu từ mặc định
 
 # Đường dẫn đến các file dữ liệu
-USERS_DATA_PATH = "/app/upload/users_data.json"
-QUESTION_DATA_PATH = "/app/upload/question_data.json"
-OPTIONS_DATA_PATH = "/app/upload/options_data.json"
-HISTORY_LEARNING_DATA_PATH = "/app/upload/history_learning_data.json"
+USERS_DATA_PATH = "/app/upload/users_data_sample.json"
+QUESTION_DATA_PATH = "/app/upload/question_data_sample.json"
+OPTIONS_DATA_PATH = "/app/upload/options_data_sample.json"
+HISTORY_LEARNING_DATA_PATH = "/app/upload/history_learning_data_sample.json"
 FINAL_SAMPLE_OUTPUT_PATH = "/app/upload/final_sample_output.json"
 
 # Cấu hình batch size cho xử lý dữ liệu lớn

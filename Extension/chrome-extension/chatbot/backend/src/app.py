@@ -386,7 +386,7 @@ async def search_dbpedia(data: Dict):
 
 @app.post("/dbpedia/extract-data")
 async def extract_data(data: Dict):
-    file_path = data.get("path", "data/history_learning_data.json")
+    file_path = data.get("path", "data/history_learning_data_sample.json")
     json_file_path = f"/usr/src/app/src/{file_path}"
     sample = data.get("sample", 0)
     limit = data.get("limit", 1000)
@@ -453,7 +453,7 @@ async def compare_models(data: Dict):
     """
     API endpoint để so sánh hiệu suất của các mô hình embedding
     """
-    file_path = data.get("path", "data/history_learning_data.json")
+    file_path = data.get("path", "data/history_learning_data_sample.json")
     json_file_path = f"/usr/src/app/src/{file_path}"
     sample = data.get("sample", 10)
     limit = data.get("limit", 10)
@@ -474,7 +474,7 @@ async def fine_tune_models(data: Dict):
     """
     API endpoint để fine-tune các mô hình embedding trên dữ liệu học tập
     """
-    file_path = data.get("path", "data/history_learning_data.json")
+    file_path = data.get("path", "data/history_learning_data_sample.json")
     json_file_path = f"/usr/src/app/src/{file_path}"
     sample = data.get("sample", 100)
     version = data.get("version")
@@ -1353,14 +1353,14 @@ async def extract_data_auto(data: Dict):
     Tuân thủ đúng quy trình: extract topic -> save to DB -> get categories -> get pages
 
     Tham số:
-        path: Đường dẫn đến file dữ liệu (mặc định: /usr/src/app/src/data/history_learning_data.json)
+        path: Đường dẫn đến file dữ liệu (mặc định: /usr/src/app/src/data/history_learning_data_sample.json)
         sample: Số lượng mẫu cần xử lý (mặc định: False)
         limit: Giới hạn số lượng entries (mặc định: None)
         embedding_model: Mô hình embedding được sử dụng (mặc định: distilbert)
         ensure_count: Đảm bảo đủ số lượng kết quả được xử lý (mặc định: True)
     """
     try:
-        file_path = data.get("path", "/usr/src/app/src/data/history_learning_data.json")
+        file_path = data.get("path", "/usr/src/app/src/data/history_learning_data_sample.json")
         sample = data.get("sample", False)
         limit = data.get("limit")
         embedding_model = data.get("embedding_model", "distilbert")
@@ -1482,7 +1482,7 @@ async def extract_data_auto_response(task_id: str):
 
 @app.post("/ai/batch-extract-topics-khanh")
 def batch_extract_topics_ai(
-    path: str = "data/history_learning_data.json", sample: int = 10
+    path: str = "data/history_learning_data_sample.json", sample: int = 10
 ):
     """
     Simplified version of batch-extract-topics API to test Celery worker task processing
@@ -1886,12 +1886,12 @@ async def get_batch_extract_topics_result(task_id: str):
 @app.post("/ai/batch-extract-topics")
 async def batch_extract_topics(data: Dict):
     """
-    API để đọc dữ liệu từ file history_learning_data.json,
+    API để đọc dữ liệu từ file history_learning_data_sample.json,
     xử lý các entry sử dụng AI để summarize nội dung và xác định các topic liên quan,
     và so sánh với phương pháp truyền thống.
 
     Tham số:
-        path: Đường dẫn đến file history_learning_data.json (mặc định: data/history_learning_data.json)
+        path: Đường dẫn đến file history_learning_data_sample.json (mặc định: data/history_learning_data_sample.json)
         sample: Số lượng entry cần xử lý (mặc định: 10)
         compare_methods: Có so sánh giữa phương pháp AI và phương pháp truyền thống không (mặc định: True)
 
@@ -1899,7 +1899,7 @@ async def batch_extract_topics(data: Dict):
         JSON response với task_id và result_endpoint
     """
     # Lấy các tham số
-    file_path = data.get("path", "data/history_learning_data.json")
+    file_path = data.get("path", "data/history_learning_data_sample.json")
     # Đảm bảo path được xử lý đúng cách
     json_file_path = (
         f"/usr/src/app/src/{file_path}"

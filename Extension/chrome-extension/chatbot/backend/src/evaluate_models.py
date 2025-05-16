@@ -2,7 +2,7 @@
 """
 Script đánh giá và so sánh hiệu suất các mô hình embedding khác nhau
 Cách sử dụng:
-    python evaluate_models.py --data_path data/history_learning_data.json --output_dir results
+    python evaluate_models.py --data_path data/history_learning_data_sample.json --output_dir results
 """
 
 import os
@@ -364,7 +364,7 @@ def main():
     parser.add_argument(
         "--data_path",
         type=str,
-        default="data/history_learning_data.json",
+        default="data/history_learning_data_sample.json",
         help="Path to learning history data",
     )
     parser.add_argument(

@@ -34,7 +34,7 @@ Models that are not yet in the models folder need to be fine-tuned before loadin
 ```
 curl -X POST http://localhost:8000/models/fine-tune \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000}'
 ```
 After fine-tuning is complete, you can load the model
 ```
@@ -74,7 +74,7 @@ curl -X DELETE http://localhost:8000/models/roberta/hf_20250416_163351
 ```
 curl -X POST http://localhost:8000/models/compare \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000}'
 ```
 ```
 curl -X GET http://localhost:8000/models/fine-tune/4474c114-032b-4fd0-a328-6e1dd90e8e65
@@ -83,7 +83,7 @@ curl -X GET http://localhost:8000/models/fine-tune/4474c114-032b-4fd0-a328-6e1dd
 ```
 curl -X POST http://localhost:8000/dbpedia/extract-data \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000, "embedding_model": "bm25"}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000, "embedding_model": "bm25"}'
 
 curl -X GET http://localhost:8000/dbpedia/extract-data/c51a3967-f5d1-455a-9591-4f20dbb1d091 \
   -H "Content-Type: application/json"
@@ -92,7 +92,7 @@ curl -X GET http://localhost:8000/dbpedia/extract-data/c51a3967-f5d1-455a-9591-4
 ```
 curl -X POST http://localhost:8000/dbpedia/extract-data \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000, "embedding_model": "bm25"}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000, "embedding_model": "bm25"}'
 ```
 ## 5. Run evaluation script:
 Connect to the chatbot-api container
@@ -105,12 +105,12 @@ cd /usr/src/app/src
 ```
 Run the model evaluation script (will automatically download NLTK resources)
 ```
-python evaluate_models.py --data_path data/history_learning_data.json --output_dir results --sample 10000 --limit 15
+python evaluate_models.py --data_path data/history_learning_data_sample.json --output_dir results --sample 10000 --limit 15
 ```
 
 ## 6. Use a specific model to extract data (after loading and indexing data)
 ```
 curl -X POST http://localhost:8000/dbpedia/extract-data \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000, "embedding_model": "roberta"}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000, "embedding_model": "roberta"}'
 ```

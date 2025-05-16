@@ -208,7 +208,7 @@ Fine-tune models with learning data:
 ```bash
 curl -X POST http://localhost:8000/models/fine-tune \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 1000000}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 1000000}'
 ```
 
 The response will have the format:
@@ -290,7 +290,7 @@ Compare model performance:
 ```bash
 curl -X POST http://localhost:8000/models/compare \
   -H "Content-Type: application/json" \
-  -d '{"path": "data/history_learning_data.json", "sample": 10000}'
+  -d '{"path": "data/history_learning_data_sample.json", "sample": 10000}'
 ```
 
 Run detailed evaluation script:
@@ -302,7 +302,7 @@ docker exec -it chatbot-api bash
 cd /usr/src/app/src
 
 # Run the evaluation script
-python evaluate_models.py --data_path data/history_learning_data.json --output_dir results --sample 10000 --limit 15
+python evaluate_models.py --data_path data/history_learning_data_sample.json --output_dir results --sample 10000 --limit 15
 ```
 
 ### 2.7. Common Troubleshooting
@@ -416,7 +416,7 @@ curl -X POST http://localhost:8000/ai/initialize-models \
 API endpoint to extract data from history learning data using a combination of 3 methods (LDA, DistilBERT, keyword extraction) to automatically extract topics, save topics to the database, then search for categories and link to pages on DBpedia. Strictly follows this process: extract topic -> save to DB -> get categories -> get pages
 
 ## Parameters:
-- **path**: Path to the data file (default: /usr/src/app/src/data/history_learning_data.json)
+- **path**: Path to the data file (default: /usr/src/app/src/data/history_learning_data_sample.json)
 - **sample**: Number of samples to process (default: False)
 - **limit**: Limit on the number of entries (default: None)
 - **embedding_model**: Embedding model to be used (default: distilbert)
@@ -438,7 +438,7 @@ API endpoint to extract data from history learning data using a combination of 3
       "task_id": "c06a24a2-96a5-4346-be74-8eba5ae7aca5",
       "result_endpoint": "/dbpedia/extract-data-auto/c06a24a2-96a5-4346-be74-8eba5ae7aca5",
       "params": {
-          "file_path": "/usr/src/app/src/data/history_learning_data.json",
+          "file_path": "/usr/src/app/src/data/history_learning_data_sample.json",
           "sample": 10000,
           "limit": 15,
           "embedding_model": "distilbert",

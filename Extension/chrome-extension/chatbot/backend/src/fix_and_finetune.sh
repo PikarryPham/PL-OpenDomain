@@ -37,7 +37,7 @@ curl -s -X GET "$API_URL/models/active" | python -m json.tool
 echo "Tiến hành fine-tune với phiên bản $VERSION..."
 RESPONSE=$(curl -s -X POST "$API_URL/models/fine-tune" \
   -H "Content-Type: application/json" \
-  -d "{\"path\": \"data/history_learning_data.json\", \"sample\": 100, \"version\": \"$VERSION\"}")
+  -d "{\"path\": \"data/history_learning_data_sample.json\", \"sample\": 100, \"version\": \"$VERSION\"}")
 
 # Hiển thị task_id từ kết quả fine-tune
 TASK_ID=$(echo "$RESPONSE" | grep -o '"task_id": "[^"]*"' | cut -d'"' -f4)

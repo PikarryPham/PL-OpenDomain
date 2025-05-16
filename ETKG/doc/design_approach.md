@@ -12,7 +12,7 @@
   - `email`: User's email
   - `created_time_original`: Original creation time
   - `updated_time`: Update time
-  - Other properties from users_data.json
+  - Other properties from users_data_sample.json
 
 #### Question Node
 - Label: `Question`
@@ -39,7 +39,7 @@
   - `timestamp`: Access time
   - `pageview_count`: Page view count
   - `capped_time_on_page`: Time spent on page
-  - Other properties from history_learning_data.json
+  - Other properties from history_learning_data_sample.json
 
 #### Concept Node
 - Divided into 3 types based on level:
@@ -122,20 +122,20 @@
 
 ### 2.4 Detailed Processing Steps
 1. **Process User Node**:
-   - Read data from users_data.json
+   - Read data from users_data_sample.json
    - Create or update the User Node
 
 2. **Process Question and Option Nodes**:
-   - Read data from question_data.json and options_data.json
+   - Read data from question_data_sample.json and options_data_sample.json
    - Create or update the Question and Option Nodes
    - Create `HAS` relationships between Question and Option
 
 3. **Process User-Option Relationship**:
-   - Based on `preferred_*` information in users_data.json
+   - Based on `preferred_*` information in users_data_sample.json
    - Create `CHOOSE` relationships between User and Option
 
 4. **Process Entry Node**:
-   - Read data from history_learning_data.json
+   - Read data from history_learning_data_sample.json
    - Create or update the Entry Node
    - Create `HAS` relationships between User and Entry
 

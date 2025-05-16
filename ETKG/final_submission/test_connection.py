@@ -35,25 +35,25 @@ except Exception as e:
 try:
     import json
     
-    # Đọc file users_data.json
+    # Đọc file users_data_sample.json
     with open(USERS_DATA_PATH, 'r', encoding='utf-8') as file:
         users_data = json.load(file)
-        print(f"Đã đọc thành công file users_data.json, số lượng user: {len(users_data)}")
+        print(f"Đã đọc thành công file users_data_sample.json, số lượng user: {len(users_data)}")
     
-    # Đọc file question_data.json
+    # Đọc file question_data_sample.json
     with open(QUESTION_DATA_PATH, 'r', encoding='utf-8') as file:
         questions_data = json.load(file)
-        print(f"Đã đọc thành công file question_data.json, số lượng question: {len(questions_data)}")
+        print(f"Đã đọc thành công file question_data_sample.json, số lượng question: {len(questions_data)}")
     
-    # Đọc file options_data.json
+    # Đọc file options_data_sample.json
     with open(OPTIONS_DATA_PATH, 'r', encoding='utf-8') as file:
         options_data = json.load(file)
-        print(f"Đã đọc thành công file options_data.json, số lượng option: {len(options_data)}")
+        print(f"Đã đọc thành công file options_data_sample.json, số lượng option: {len(options_data)}")
     
-    # Đọc file history_learning_data.json
+    # Đọc file history_learning_data_sample.json
     with open(HISTORY_LEARNING_DATA_PATH, 'r', encoding='utf-8') as file:
         entries_data = json.load(file)
-        print(f"Đã đọc thành công file history_learning_data.json, số lượng entry: {len(entries_data)}")
+        print(f"Đã đọc thành công file history_learning_data_sample.json, số lượng entry: {len(entries_data)}")
     
     # Đọc file final_sample_output.json
     with open(FINAL_SAMPLE_OUTPUT_PATH, 'r', encoding='utf-8') as file:

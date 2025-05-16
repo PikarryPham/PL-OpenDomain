@@ -54,5 +54,5 @@ def extract_pages_mapping(json_file_path):
 
 if __name__ == '__main__':
     # Define the path to the JSON file
-    json_file_path = 'data/streaming/history_learning_data.json'
+    json_file_path = 'data/streaming/history_learning_data_sample.json'
     extract_pages_mapping(json_file_path)

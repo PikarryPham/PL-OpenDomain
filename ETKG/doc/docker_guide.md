@@ -26,10 +26,10 @@ tkg-docker/
 │   ├── models/               # Data models
 │   └── utils/                # Utilities
 └── upload/                   # Directory containing input data
-    ├── users_data.json
-    ├── question_data.json
-    ├── options_data.json
-    ├── history_learning_data.json
+    ├── users_data_sample.json
+    ├── question_data_sample.json
+    ├── options_data_sample.json
+    ├── history_learning_data_sample.json
     └── final_sample_output.json
 ```
 
@@ -48,10 +48,10 @@ docker-compose --version
 
 Ensure the JSON data files are placed in the upload/ directory:
 
-- users_data.json
-- question_data.json
-- options_data.json
-- history_learning_data.json
+- users_data_sample.json
+- question_data_sample.json
+- options_data_sample.json
+- history_learning_data_sample.json
 - final_sample_output.json
 
 ### 3. Automated Deployment

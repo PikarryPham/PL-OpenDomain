@@ -11,4 +11,4 @@
     docker exec -it mariadb-tiny bash
     mysql -u root -p
 
-    CREATE DATABASE demo_bot CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    CREATE DATABASE rs_dbpedia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

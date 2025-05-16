@@ -51,7 +51,7 @@ from ai_summarization import (
     summarize_text,
     extract_topics_with_zero_shot,
     extract_keywords,
-    process_visible_content_khanh,
+    process_visible_content_ai,
 )
 
 setup_logging()
@@ -814,8 +814,8 @@ async def summarize_content(data: Dict):
             f"Summarizing content (length: {len(content)}, preview: {content_preview})"
         )
 
-        # Sử dụng process_visible_content_khanh để tóm tắt và trích xuất chủ đề
-        result = process_visible_content_khanh(content)
+        # Sử dụng process_visible_content_ai để tóm tắt và trích xuất chủ đề
+        result = process_visible_content_ai(content)
 
         # Kiểm tra chất lượng tóm tắt
         summary = result.get("summary", "")
@@ -1248,7 +1248,7 @@ async def extract_topics_auto(data: Dict):
             extract_topics_with_lda,
             extract_topics_with_zero_shot,
             extract_keywords,
-            process_visible_content_khanh,
+            process_visible_content_ai,
         )
 
         # Trích xuất topics từ mỗi phương pháp riêng biệt thay vì dùng process_visible_content
@@ -1481,14 +1481,14 @@ async def extract_data_auto_response(task_id: str):
 
 
 @app.post("/ai/batch-extract-topics-khanh")
-def batch_extract_topics_khanh(
+def batch_extract_topics_ai(
     path: str = "data/history_learning_data.json", sample: int = 10
 ):
     """
     Simplified version of batch-extract-topics API to test Celery worker task processing
     """
     try:
-        logger.info(f"batch_extract_topics_khanh called with sample_size={sample}")
+        logger.info(f"batch_extract_topics_ai called with sample_size={sample}")
 
         # Đọc dữ liệu từ file
         full_path = os.path.join("/usr/src/app/src", path)
@@ -1579,16 +1579,16 @@ def batch_extract_topics_khanh(
             "message": f"Processing {len(valid_entries)} entries with batch extract topics",
         }
     except Exception as e:
-        logger.error(f"Error in batch_extract_topics_khanh: {str(e)}")
+        logger.error(f"Error in batch_extract_topics_ai: {str(e)}")
         traceback.print_exc()
         return {"error": str(e)}
 
 
 @app.post("/ai/summarize-khanh")
-async def summarize_content_khanh(data: Dict):
+async def summarize_content_ai(data: Dict):
     """
     API endpoint để tóm tắt nội dung và trích xuất chủ đề
-    Sử dụng phiên bản cải tiến process_visible_content_khanh để ưu tiên LDA và keyword hơn distilbert
+    Sử dụng phiên bản cải tiến process_visible_content_ai để ưu tiên LDA và keyword hơn distilbert
     """
     content = data.get("content", "")
     if not content:
@@ -1601,8 +1601,8 @@ async def summarize_content_khanh(data: Dict):
             f"Summarizing content with khanh method (length: {len(content)}, preview: {content_preview})"
         )
 
-        # Sử dụng process_visible_content_khanh để tóm tắt và trích xuất chủ đề
-        result = process_visible_content_khanh(content)
+        # Sử dụng process_visible_content_ai để tóm tắt và trích xuất chủ đề
+        result = process_visible_content_ai(content)
 
         # Kiểm tra chất lượng tóm tắt
         summary = result.get("summary", "")
@@ -1619,7 +1619,7 @@ async def summarize_content_khanh(data: Dict):
         logger.info(f"Summary result: {summary[:100]}...")
         return result
     except Exception as e:
-        logger.error(f"Error in summarize_content_khanh: {e}", exc_info=True)
+        logger.error(f"Error in summarize_content_ai: {e}", exc_info=True)
         # Trả về thông báo lỗi chi tiết hơn cho client
         return {
             "error": str(e),
@@ -1632,14 +1632,14 @@ async def summarize_content_khanh(data: Dict):
 
 
 @app.post("/ai/extract-topics-auto-khanh")
-async def extract_topics_auto_khanh(data: Dict):
+async def extract_topics_auto_ai(data: Dict):
     """
     Tự động trích xuất topics từ content sử dụng kết hợp 3 phương pháp:
     1. LDA (Latent Dirichlet Allocation)
     2. DistilBERT Cosine Similarity
     3. Keyword Extraction
 
-    Sử dụng phiên bản cải tiến process_visible_content_khanh để ưu tiên LDA và keyword hơn distilbert
+    Sử dụng phiên bản cải tiến process_visible_content_ai để ưu tiên LDA và keyword hơn distilbert
     """
     try:
         content = data.get("content", "")
@@ -1651,7 +1651,7 @@ async def extract_topics_auto_khanh(data: Dict):
 
         # Đầu tiên, trích xuất topics từ mỗi phương pháp riêng biệt
         from ai_summarization import (
-            process_visible_content_khanh,
+            process_visible_content_ai,
             extract_topics_with_lda,
             extract_topics_with_zero_shot,
             extract_keywords,
@@ -1678,7 +1678,7 @@ async def extract_topics_auto_khanh(data: Dict):
             )
 
         # 3. Xử lý content bằng phiên bản cải tiến của process_visible_content
-        result = process_visible_content_khanh(content, max_topics=max_topics)
+        result = process_visible_content_ai(content, max_topics=max_topics)
 
         # Lấy summary và topics từ kết quả
         topics = result.get("topics", [])
@@ -1754,7 +1754,7 @@ async def extract_topics_auto_khanh(data: Dict):
             "keywords": keywords[:5],  # Giới hạn số lượng keywords trả về
         }
     except Exception as e:
-        logger.error(f"Error in extract_topics_auto_khanh: {str(e)}")
+        logger.error(f"Error in extract_topics_auto_ai: {str(e)}")
         logger.error(traceback.format_exc())
         raise HTTPException(
             status_code=500, detail=f"Error extracting topics: {str(e)}"

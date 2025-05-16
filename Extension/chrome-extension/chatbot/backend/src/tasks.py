@@ -1244,19 +1244,19 @@ def ai_summarize_task(content: str):
         return {"error": str(e)}
 
 
-@celery_app.task(name="ai_summarize_khanh")
-def ai_summarize_khanh_task(content: str):
+@celery_app.task(name="ai_summarize_ai")
+def ai_summarize_ai_task(content: str):
     """
     Task Celery để tóm tắt nội dung và trích xuất chủ đề
-    Sử dụng phiên bản cải tiến process_visible_content_khanh ưu tiên LDA và keyword hơn distilbert
+    Sử dụng phiên bản cải tiến process_visible_content_ai ưu tiên LDA và keyword hơn distilbert
     """
     try:
-        from ai_summarization import process_visible_content_khanh
+        from ai_summarization import process_visible_content_ai
 
-        result = process_visible_content_khanh(content)
+        result = process_visible_content_ai(content)
         return result
     except Exception as e:
-        logger.error(f"Error in ai_summarize_khanh_task: {e}")
+        logger.error(f"Error in ai_summarize_ai_task: {e}")
         return {"error": str(e)}
 
 

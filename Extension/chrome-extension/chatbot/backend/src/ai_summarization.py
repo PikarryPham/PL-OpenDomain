@@ -1766,7 +1766,7 @@ def _is_same_as_input(summary: str, original_text: str) -> bool:
     return False
 
 
-def process_visible_content_khanh(
+def process_visible_content_ai(
     visible_content: str, max_topics: int = 5
 ) -> Dict[str, Any]:
     """
@@ -1987,6 +1987,6 @@ def process_visible_content_khanh(
             "keywords": keywords,
         }
     except Exception as e:
-        logger.error(f"Error in process_visible_content_khanh: {e}")
+        logger.error(f"Error in process_visible_content_ai: {e}")
         logger.error(traceback.format_exc())
         return {"summary": "", "topics": [], "keywords": []}

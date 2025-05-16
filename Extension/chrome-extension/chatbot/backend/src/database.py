@@ -18,7 +18,7 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:63
 
 # MySQL database configuration
 SQLALCHEMY_DATABASE_URL = (
-    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/demo_bot"
+    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/rs_dbpedia"
 )
 
 engine = create_engine(
@@ -29,7 +29,7 @@ engine = create_engine(
 mysql_config = {
     "host": MYSQL_HOST,
     "port": MYSQL_PORT,
-    "database": "demo_bot",
+    "database": "rs_dbpedia",
     "user": MYSQL_USER,
     "password": MYSQL_PASSWORD,
 }
